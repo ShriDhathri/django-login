@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<style>
+    .form-group{
+        background-color: black;
+        color: white;
+        align-content: center;    
+        }
+    .container{
+        background-color: black;
+        color: white;
+        align-content: center;
+    }
+</style>
+<body>
+    <div class="container">
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dissmissible fade show" role="alert">
+        <strong>Message:</strong>{{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    </div>
+    {% endfor %}
+
+    <h3 style="position: center; color: white; background-color: black;">Create your account</h3>
+
+    <form method="post" action="/signup">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Create a uername(should contain only letters and numbers)" required>
+        </div>
+        <div class="form-group">
+            <label for="fname">Firstname</label>
+            <input type="text" id="fname" name="fname" placeholder="First name" required>
+        </div>
+        <div class="form-group">
+            <label for="lname">Lastname</label>
+            <input type="text" id="lname" name="lname" placeholder="Last name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email id</label>
+            <input type="email" id="email" name="email" placeholder="abc123@gmail.com" required>
+        </div>
+        <div class="form-group">
+            <label for="pass1">Password</label>
+            <input type="password" id="pass1" name="pass1" placeholder="Create a strong password" required>
+        </div>
+        <div class="form-group">
+            <label for="pass2">Confirm your password</label>
+            <input type="password" id="pass2" name="pass2" placeholder="Confirm your password" required>
+        </div>
+        <button style="align-content: center; color: white; background-color: rgb(26, 232, 50);" type="Submit" class="btn btn-primary" value="signin">Sign Up</button>
+    </form>
+    </div>
+</body>
+</html>
