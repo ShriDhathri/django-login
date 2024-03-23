@@ -9,11 +9,17 @@ from django.core.mail import EmailMessage, send_mail
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
-from . tokens import generate_token
+from .tokens import generate_token
+from pyngrok import ngrok
+
+# public_url = ngrok.connect(port=8000)
+
+# print("Django application is accesible at:",public_url)
 
 # Create your views here.
 def home(request):
     return render(request,"authentication/index.html")
+
 
 def signup(request):
     if request.method == "POST":
@@ -115,7 +121,7 @@ def signin(request):
             fname=user.first_name
             return render(request,"authentication/index.html",{'fname':fname})
         else:
-            messages.error(request,"Bad credentials!!")
+            messages.error(request,"User already exist!!")
             return redirect('home')
         
     return render(request,"authentication/signin.html")
